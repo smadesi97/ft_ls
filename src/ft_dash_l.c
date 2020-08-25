@@ -39,8 +39,7 @@ void dash_l(DIR *p_dir, t_ls_flags *fs, char *path)
 
         // [file type]
         //Let's start with the file type
-        //The stat manual is pretty complete and gives details about st_mode and S_IFMT: http://manpagesfr.free.fr/man/man2/stat.2.html
-        //
+        //The stat manual is pretty complete and gives details about st_mode and S_IFMT
         switch (thestat.st_mode & S_IFMT)
         {
         case S_IFBLK:
@@ -68,7 +67,6 @@ void dash_l(DIR *p_dir, t_ls_flags *fs, char *path)
         }
         //[permissions]
         //Same for the permissions, we have to test the different rights
-        //READ http://linux.die.net/man/2/chmod
         ft_putstr((thestat.st_mode & S_IRUSR) ? "r" : "-");
         ft_putstr((thestat.st_mode & S_IWUSR) ? "w" : "-");
         ft_putstr((thestat.st_mode & S_IXUSR) ? "x" : "-");
@@ -80,20 +78,17 @@ void dash_l(DIR *p_dir, t_ls_flags *fs, char *path)
         ft_putstr((thestat.st_mode & S_IXOTH) ? "x" : "-");
 
         // [number of hard links]
-        // Quoting: http://www.gnu.org/software/libc/manual/html_node/Attribute-Meanings.html
         // "This count keeps track of how many directories have entries for this file.
         // If the count is ever decremented to zero, then the file itself is discarded as soon as no process still holds it open."
         ft_printf("   %ld", thestat.st_nlink);
 
         //[owner]
-        // http://linux.die.net/man/3/getpwuid
         tf = getpwuid(thestat.st_uid);
         //printf("\t%s", tf->pw_name);
         ft_putchar('\t');
         ft_putstr(tf->pw_name);
 
         //[group]
-        // http://linux.die.net/man/3/getgrgid
         gf = getgrgid(thestat.st_gid);
         // printf("\t%s", gf->gr_name);
         ft_putchar('\t');

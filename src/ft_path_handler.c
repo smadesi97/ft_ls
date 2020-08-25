@@ -11,7 +11,7 @@ void path_handler(char *path, t_ls_flags *fs)
     p_dir = opendir(path);
     if (!p_dir)
     {
-        perror("Could not open");
+        perror("Did not open");
         exit(EXIT_FAILURE);
     }
     if (!fs->f_R && !fs->f_l && !fs->f_t && !fs->f_a && !fs->f_r)
